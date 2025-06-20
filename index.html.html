@@ -1,0 +1,1257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cards - Médicos</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background:  linear-gradient(106deg, #ae22bbb0 20%, #0077c6b0 100%);/*linear-gradient(146deg, #c6007d 50%, #23a9ce 50%);linear-gradient(313deg, #bc81cd42 0%, #D3007E 100%);*/
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .dashboard-container {
+            max-width: 1864px;
+            margin: 0 auto;
+            padding: 0px;
+        }
+
+        .dashboard-title {
+            text-align: center;
+            color: white;
+            font-size: 30px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            margin-top: -10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .doctor-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doctor-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .doctor-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .doctor-photo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 3px solid #f0f0f0;
+        }
+
+        .doctor-info h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #3f2c38;
+        }
+        
+        .doctor-info h2 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: bold;
+            color: #3f2c38;
+        }
+        /*.hours-box:nth-child(1)::before { background: #3498db; }
+        .hours-box:nth-child(2)::before { background: #e74c3c; }
+        .hours-box:nth-child(3)::before { background: #27ae60; }*/
+        .doctor-info p {
+            margin: 5px 0 0 0;
+            color: #708586;
+            font-size: 14px;
+        }
+
+        .status-indicator {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-verde { background: #27ae60; }
+        .status-amarillo { background: #f1c40f; }
+        .status-naranja { background: #e78c3d; }
+        .status-rojo { background: #e74c3c; }/*8e44ad*/
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .hours-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .heatmap-preview { background: #f8f9fa; padding: 10px; border-radius: 8px; margin-top: 10px; }
+        .heatmap-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; margin-top: 5px; }
+        .heatmap-day { width: 100%; height: 20px; border-radius: 3px; position: relative; cursor: pointer; }
+        .heat-0 { background: #ebedf0; }
+        .heat-1 { background: #c6e48b; }
+        .heat-2 { background: #7bc96f; }
+        .heat-3 { background: #239a3b; }
+        .heat-4 { background: #196127; }
+
+
+        .hours-box { 
+            text-align: center; 
+            padding: 10px 10px; 
+            border-radius: 12px; 
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef); 
+            position: relative; 
+            overflow: hidden; 
+        }
+
+        .hours-box::before { 
+            content: ''; 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            right: 0; 
+            height: 3px; }
+       
+        .hours-box {
+            text-align: center;
+            padding: 10px;
+            border-radius: 8px;
+            background: #abb8b824;
+        }
+
+        .hours-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #334455;
+            margin-bottom: 5px;
+        }
+
+        .hours-label {
+            font-size: 11px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .progress-section {
+            margin-bottom: 0px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0px;
+        }
+
+        .progress-percentage {
+            font-weight: bold;
+            font-size: 26px;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #ecf0f1;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1s ease-in-out;
+            position: relative;
+        }
+
+        .progress-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .verde { background: linear-gradient(90deg, #27ae60, #2ecc71); }
+        .amarillo { background: linear-gradient(90deg, #f1c40f, #f39c12); }
+        .naranja { background: linear-gradient(90deg, #e67e22, #d35400); }
+        .rojo { background: linear-gradient(90deg, #e66759, #e74c3c); }/*#8d44ad6b, #8e44ad); }*/
+
+        .consultorio-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+
+        .consultorio-number {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .tiempo-restante {
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+
+        .legend {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+
+        .legend h4 {
+            margin: 0 0 15px 0;
+            color: #2c3e50;
+            font-size: 16px;
+        }
+
+        .legend-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .mini-chart {
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 6px;
+            margin-top: 8px;
+            display: flex;
+            align-items: end;
+            padding: 4px;
+            gap: 2px;
+        }
+
+        .mini-bar {
+            flex: 1;
+            background: #bdc3c7;
+            border-radius: 2px;
+            min-height: 5px;
+        }
+
+        .trend-indicator {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .trend-up { color: #27ae60; }
+        .trend-down { color: #e74c3c; }
+        .trend-stable { color: #f39c12; }
+
+        .next-slots {
+            background: #28a14c00;
+            border: 0px solid #28a14d;
+            border-radius: 12px;
+            padding: 0px;  
+            margin-bottom: 16px;
+        }
+
+        .next-slots-title {
+            /*font-size: 14px;
+            font-weight: 600;*/
+            margin-bottom: 8px;
+        }
+
+        .time-slots {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .time-slot {
+            background: white;
+            border: 1px solid #28a14d;
+            border-radius: 6px;
+            padding: 4px 8px;
+            font-size: 17px;
+            color: #269b57;
+            font-weight: 500;
+        }
+
+        .slot-red {
+            border: 1px solid #e74c3c;
+            color: #e74c3c;
+        }
+
+        .slot-amarillo {
+            border: 1px solid #f39c12;
+            color: #f39c12;
+        }
+
+        .slot-naranja {
+            border: 1px solid #e78c3d;
+            color: #e78c3d;
+        }
+
+        .ocupacion-leyenda {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            color: #7f8c8d;
+            margin-top: 4px;
+        }
+
+        .leyenda-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .leyenda-color {
+            width: 8px;
+            height: 8px;
+            border-radius: 2px;
+        }
+
+        .horario-info {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 15px;
+        }
+
+        .horario-actual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .hora-inicio, .hora-fin {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .duracion {
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+
+        .proxima-cita {
+            background: rgba(52, 152, 219, 0.1);
+            border-left: 4px solid #3498db;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+
+        .proxima-cita-time {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">Dashboard de Agendamiento Médico</h1>
+        
+        <div class="cards-grid">
+
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2024/08/dra-ramos-perfil_Mesa-de-trabajo-1_Mesa-de-trabajo-1-390x390.png" alt="Dra. Torres" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h2>Consultorio 1</h2>
+                        <h3>Dra. Daniela Ramos</h3>
+                        <p>Especialista en Segmento Anterior, Cirugía de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <span class="duracion">→ Consulta en curso</span>
+                        <span class="hora-fin">14:45</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #e74c3c;">20%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill rojo" style="width: 20%;"></div>
+                    </div>
+                </div>
+
+                 <div class="trend-indicator trend-down">
+                    ↓ -5% vs día anterior
+                </div>
+
+                <div class="proxima-cita">
+                    <div class="proxima-cita-time">Próxima: 15:00 - Sr. Martínez</div>
+                </div>
+
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-red">14:30</span>
+                        <span class="time-slot slot-red">15:00</span>
+                        <span class="time-slot slot-red">16:30</span>
+                        <span class="time-slot slot-red">17:00</span>
+                    </div>
+                </div>
+                
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #e74c3c;"></div>
+                </div>
+
+            </div>
+
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-Arana-K-250x250.jpg" alt="Dr. García" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dr. Gerardo Arana</h3>
+                        <p>Especialista en Retina y Vítreo</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                     
+                </div>
+                
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:30</span>
+                        <span class="duracion">Libre por 20 min</span>
+                        <span class="hora-fin">14:50</span>
+                    </div>
+                </div>
+
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos Cupos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-red">09:30</span>
+                        <span class="time-slot slot-red">10:00</span>
+                        <span class="time-slot slot-red">10:30</span>
+                        <span class="time-slot slot-red">11:00</span>
+                        <span class="time-slot slot-red">11:30</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #e74c3c;">30%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill rojo" style="width: 30%;"></div>
+                    </div>
+                </div>
+
+                
+
+                <div class="trend-indicator trend-down">
+                    ↓ -3% vs día anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #e74c3c;"></div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2023/02/Staff-Berrospi-250x250.jpg" alt="Dra. López" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dr. Rubén Berrospi Salcedo</h3>
+                        <p>Especialista en Córnea, Cirugía de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                     
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">15:00</span>
+                        <span class="duracion">Inicia en 25 min</span>
+                        <span class="hora-fin">15:45</span>
+                    </div>
+                </div>
+
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos Cupos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-red">09:30</span>
+                        <span class="time-slot slot-red">10:00</span>
+                        <span class="time-slot slot-red">10:30</span>
+                        <span class="time-slot slot-red">11:00</span>
+                        <span class="time-slot slot-red">11:30</span>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #e74c3c;">45%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill rojo" style="width: 30%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-down">
+                    ↓ -6% vs día  anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e74c3c;"></div>
+                </div>
+                
+            </div>
+            
+
+            <div class="doctor-card">
+                <div class="status-indicator status-amarillo"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-Berrospi-R-250x250.jpg" alt="Dra. López" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dr. Rubén Berrospi</h3>
+                        <p>Especialista en Córnea, Cirugía de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                  
+                     
+                </div>
+                
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-amarillo ">14:30</span>
+                        <span class="time-slot slot-amarillo">15:00</span>
+                        <span class="time-slot slot-amarillo">16:30</span>
+                        <span class="time-slot slot-amarillo">17:00</span>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #f1c40f;">60%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill amarillo" style="width: 60%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-stable">
+                    → Estable vs día  anterior
+                </div>
+
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #f1c40f;"></div>
+                </div>
+
+            </div>
+
+            
+            <!-- Card 2: Amarillo - Ocupación moderada -->
+            <div class="doctor-card">
+                <div class="status-indicator status-amarillo"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2021/02/Staff-Arana-Shaw-250x2502.jpg" alt="Dra. López" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dr. Rodrigo Arana </h3>
+                        <p>Especialista en Cirugía de Catarata, Retina, Vítreo y Trauma Ocular</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                     
+                </div>
+                
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-amarillo">14:30</span>
+                        <span class="time-slot slot-amarillo">15:00</span>
+                        <span class="time-slot slot-amarillo">16:30</span>
+                        <span class="time-slot slot-amarillo">17:00</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #f1c40f;">60%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill amarillo" style="width: 60%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-stable">
+                    → Estable vs día  anterior
+                </div>
+                
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #f1c40f;"></div>
+                </div>
+                
+            </div>
+
+            <!-- Card 3: Naranja - Alta ocupación -->
+            <div class="doctor-card">
+                <div class="status-indicator status-naranja"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-JC-Corbera-250x250.jpg" alt="Dr. Silva" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dr. Juan Carlos Corbera</h3>
+                        <p>Especialista en Córnea, Cirugía de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">2</div>
+                        <div class="hours-label">PROX VCR</div>
+                    </div> 
+
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                     
+                </div>
+
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-naranja">14:30</span>
+                        <span class="time-slot slot-naranja">15:00</span>
+                        <span class="time-slot slot-naranja">16:30</span>
+                        <span class="time-slot slot-naranja">17:00</span>
+                    </div>
+                </div>  
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #e67e22;">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill naranja" style="width: 75%;"></div>
+                    </div>
+                </div>
+                
+                <div class="trend-indicator trend-up">
+                    ↑ +8% vs día  anterior
+                </div>
+
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e67e22;"></div>
+                </div>
+
+            </div>
+
+            <!-- Card 4: Rojo - Ocupación crítica -->
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-E-250x250.jpg" alt="Dra. Torres" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dr. Santiago Encinas</h3>
+                        <p>Especialista en Glaucoma</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">2</div>
+                        <div class="hours-label">PROX VCR</div>
+                    </div> 
+
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                     
+                </div>
+                
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot">14:30</span>
+                        <span class="time-slot">15:00</span>
+                        <span class="time-slot">16:30</span>
+                        <span class="time-slot">17:00</span>
+                    </div>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #27ae60;">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill verde" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-up">
+                    ↑ +13% vs día  anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 0%; background: #27ae60;"></div>
+                </div>
+                
+            </div>
+            
+            <!-- Card 4: Rojo - Ocupación crítica -->
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-Siverio-Ll-250x250.jpg" alt="Dra. Torres" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dr. Carlos Siverio Llosa</h3>
+                        <p>Especialista en Cirugía de Catarata, Córnea, Refractiva y Uveítis</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">2</div>
+                        <div class="hours-label">PROX VCR</div>
+                    </div> 
+
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                     
+                </div>
+                
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot">14:30</span>
+                        <span class="time-slot">15:00</span>
+                        <span class="time-slot">16:30</span>
+                        <span class="time-slot">17:00</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #27ae60;">87%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill verde" style="width: 87%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-up">
+                    ↑ +20% vs día  anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #27ae60;"></div>
+                </div>
+                
+            </div>
+
+            <div class="doctor-card">
+                <div class="status-indicator status-verde"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-C-Escudero-250x250.jpg" alt="Dra. Torres" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dr. César Escudero</h3>
+                        <p>Especialista en Segmento Anterior, Cirugía de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">2</div>
+                        <div class="hours-label">PROX VCR</div>
+                    </div> 
+
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                     
+                </div>
+                
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot">14:30</span>
+                        <span class="time-slot">15:00</span>
+                        <span class="time-slot">16:30</span>
+                        <span class="time-slot">17:00</span>
+                    </div>
+                </div>  
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #27ae60;">87%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill verde" style="width: 87%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-up">
+                    ↑ +20% vs día anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #27ae60;"></div>
+                </div>
+                
+            </div>
+
+            <div class="doctor-card">
+                <div class="status-indicator status-verde"></div>
+                <div class="doctor-header">
+                    <img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-Doctor-Espinoza-250x250.jpg" alt="Dra. Rosario Espinoza" class="doctor-photo">
+                    <div class="doctor-info">
+                        <h3>Dra. Rosario Espinoza</h3>
+                        <p>Especialista en Baja Visión</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div> 
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    
+                    <div class="hours-box">
+                        <div class="hours-number">2</div>
+                        <div class="hours-label">PROX VCR</div>
+                    </div> 
+
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                     
+                </div>
+                
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot">14:30</span>
+                        <span class="time-slot">15:00</span>
+                        <span class="time-slot">16:30</span>
+                        <span class="time-slot">17:00</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #27ae60;">87%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill verde" style="width: 87%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-up">
+                    ↑ +20% vs semana anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #27ae60;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leyenda -->
+        <div class="legend">
+            <h4>📋 Leyenda de Estados de Ocupación</h4>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color status-rojo"></div>
+                    <span><strong>Rojo:</strong> 0% - 50% (Baja - Prioridad Alta)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color status-amarillo"></div>
+                    <span><strong>Amarillo:</strong> 51% - 70% (Normal - Prioridad Normal)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color status-naranja"></div>
+                    <span><strong>Naranja:</strong> 71% - 85% (Óptima - Prioridad Baja)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color status-verde"></div>
+                    <span><strong>Verde:</strong> 86% - 100% (Eficaz - Prioridad Baja)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulación de actualización en tiempo real
+        function updateCards() {
+            const cards = document.querySelectorAll('.doctor-card');
+            
+            cards.forEach(card => {
+                const statusIndicator = card.querySelector('.status-indicator');
+                // Añadir efecto de parpadeo para simular actualizaciones en tiempo real
+                statusIndicator.style.animation = 'none';
+                setTimeout(() => {
+                    statusIndicator.style.animation = 'pulse 2s infinite';
+                }, 100);
+            });
+        }
+
+        // Actualizar cada 5 segundos para simular tiempo real
+        setInterval(updateCards, 5000);
+
+        // Efectos de hover y interactividad
+        document.querySelectorAll('.doctor-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const doctorName = this.querySelector('h3').textContent;
+                const percentage = this.querySelector('.progress-percentage').textContent;
+                
+                // Simular apertura de detalle
+                console.log(`Abriendo detalle de ${doctorName} - Ocupación: ${percentage}`);
+                
+                // Efecto visual de click
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
