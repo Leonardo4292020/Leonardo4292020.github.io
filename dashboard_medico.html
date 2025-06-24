@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Cards - Médicos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <h1 class="dashboard-title">Central de Ocupación Médica</h1>
+        
+        <div class="cards-grid">
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <!--<div class="status-badge status-verde">Libre 20 min</div>-->
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/DanielaRamos.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Amarillo "></div>
+                    </div>
+                    <div class="doctor-info">
+                        <h2>Consultorio 1</h2>
+                        <h3>Dra. Daniela Ramos</h3>
+                        <p>Seg. Anterior, Qx. de Catarata y Refractiva</p>
+                    </div>
+                </div> 
+
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+
+            <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+
+                <!--<div class="proxima-cita">
+                    <div class="proxima-cita-time">Próxima: 15:00 - Sr. Martínez</div>
+                </div>-->
+
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos cupos efectivos  </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-red">14:30</span>
+                        <span class="time-slot slot-red">15:00</span>
+                        <span class="time-slot slot-red">16:30</span>
+                        <span class="time-slot slot-red">17:00</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #e74c3c;">20%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill rojo" style="width: 20%;"></div>
+                    </div>
+                </div>
+
+                 <div class="trend-indicator trend-down">
+                    ↓ -5% vs día anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #e74c3c;"></div>
+                </div>
+
+            </div>
+
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/GerardoArana.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-Arana-K-250x250.jpg" alt="Dr. García" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 2</h2>
+                        <h3>Dr. Gerardo Arana</h3>
+                        <p>Retina y Vítreo</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+                
+                
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:45</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos Cupos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-red">09:30</span>
+                        <span class="time-slot slot-red">10:00</span>
+                        <span class="time-slot slot-red">10:30</span>
+                        <span class="time-slot slot-red">11:00</span>
+                        <span class="time-slot slot-red">11:30</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #e74c3c;">30%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill rojo" style="width: 30%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-down">
+                    ↓ -3% vs día anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #e74c3c;"></div>
+                </div>
+            </div>
+
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/RubenBerrospiSalcedo.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2023/02/Staff-Berrospi-250x250.jpg" alt="Dra. López" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 3</h2>
+                        <h3>Dr. Rubén Berrospi Salcedo</h3>
+                        <p>Córnea, Cirugía de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+
+                
+
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos cupos efectivos </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-red">09:30</span>
+                        <span class="time-slot slot-red">10:00</span>
+                        <span class="time-slot slot-red">10:30</span>
+                        <span class="time-slot slot-red">11:00</span>
+                        <span class="time-slot slot-red">11:30</span>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #e74c3c;">45%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill rojo" style="width: 30%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-down">
+                    ↓ -6% vs día  anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #e74c3c;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e74c3c;"></div>
+                </div>
+                
+            </div>
+            
+
+            <div class="doctor-card">
+                <div class="status-indicator status-amarillo"></div>
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/RubenBerrospi.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-Berrospi-R-250x250.jpg" alt="Dra. López" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 4</h2>
+                        <h3>Dr. Rubén Berrospi</h3>
+                        <p>Córnea, Cirugía de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+               
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos cupos disponibles </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-amarillo ">14:30</span>
+                        <span class="time-slot slot-amarillo">15:00</span>
+                        <span class="time-slot slot-amarillo">16:30</span>
+                        <span class="time-slot slot-amarillo">17:00</span>
+                    </div>
+                </div>
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #f1c40f;">60%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill amarillo" style="width: 60%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-stable">
+                    → Estable vs día  anterior
+                </div>
+
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #f1c40f;"></div>
+                </div>
+            </div>
+
+            <!-- Card 2: Amarillo - Ocupación moderada -->
+            <div class="doctor-card">
+                <div class="status-indicator status-amarillo"></div>
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/RodrigoArana.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2021/02/Staff-Arana-Shaw-250x2502.jpg" alt="Dra. López" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 5</h2>
+                        <h3>Dr. Rodrigo Arana </h3>
+                        <p>Qx. de Catarata, Retina, Vítreo y Tr . Ocular</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-amarillo">14:30</span>
+                        <span class="time-slot slot-amarillo">15:00</span>
+                        <span class="time-slot slot-amarillo">16:30</span>
+                        <span class="time-slot slot-amarillo">17:00</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #f1c40f;">60%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill amarillo" style="width: 60%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-stable">
+                    → Estable vs día  anterior
+                </div>
+                
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #f1c40f;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #f1c40f;"></div>
+                </div>
+                
+            </div>
+
+            <!-- Card 3: Naranja - Alta ocupación -->
+            <div class="doctor-card">
+                <div class="status-indicator status-naranja"></div>
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/JuanCarlosCorbera.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-JC-Corbera-250x250.jpg" alt="Dr. Silva" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 6</h2>
+                        <h3>Dr. Juan Carlos Corbera</h3>
+                        <p>Córnea, Cirugía de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot slot-naranja">14:30</span>
+                        <span class="time-slot slot-naranja">15:00</span>
+                        <span class="time-slot slot-naranja">16:30</span>
+                        <span class="time-slot slot-naranja">17:00</span>
+                    </div>
+                </div>  
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #e67e22;">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill naranja" style="width: 75%;"></div>
+                    </div>
+                </div>
+                
+                <div class="trend-indicator trend-up">
+                    ↑ +8% vs día  anterior
+                </div>
+
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #e67e22;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #e67e22;"></div>
+                </div>
+
+            </div>
+
+            <!-- Card 4: Rojo - Ocupación crítica -->
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/SantiagoEncinas.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-E-250x250.jpg" alt="Dra. Torres" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 7</h2>
+                        <h3>Dr. Santiago Encinas</h3>
+                        <p>Glaucoma</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot">14:30</span>
+                        <span class="time-slot">15:00</span>
+                        <span class="time-slot">16:30</span>
+                        <span class="time-slot">17:00</span>
+                    </div>
+                </div>
+                
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #27ae60;">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill verde" style="width: 90%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-up">
+                    ↑ +13% vs día  anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 20%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 0%; background: #27ae60;"></div>
+                </div>
+                
+            </div>
+            
+            <!-- Card 4: Rojo - Ocupación crítica -->
+            <div class="doctor-card">
+                <div class="status-indicator status-rojo"></div>
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/CarlosSiverioLlosa.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-Siverio-Ll-250x250.jpg" alt="Dra. Torres" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 8</h2>
+                        <h3>Dr. Carlos Siverio Llosa</h3>
+                        <p>Qx. de Catarata, Córnea, Refractiva y Uveítis</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos DISP </div>
+                    <div class="time-slots">
+                        <span class="time-slot">14:30</span>
+                        <span class="time-slot">15:00</span>
+                        <span class="time-slot">16:30</span>
+                        <span class="time-slot">17:00</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #27ae60;">87%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill verde" style="width: 87%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-up">
+                    ↑ +20% vs día  anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #27ae60;"></div>
+                </div>
+                
+            </div>
+
+            <div class="doctor-card">
+                <!--<div class="status-indicator status-verde"></div>-->
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/CesarEscudero.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-C-Escudero-250x250.jpg" alt="Dra. Torres" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 9</h2>
+                        <h3>Dr. César Escudero</h3>
+                        <p>Seg. Anterior, Qx. de Catarata y Refractiva</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos cupos efectivos </div>
+                    <div class="time-slots">
+                        <span class="time-slot">14:30</span>
+                        <span class="time-slot">15:00</span>
+                        <span class="time-slot">16:30</span>
+                        <span class="time-slot">17:00</span>
+                    </div>
+                </div>  
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #27ae60;">87%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill verde" style="width: 87%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-up">
+                    ↑ +20% vs día anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #27ae60;"></div>
+                </div>
+                
+            </div>
+
+            <div class="doctor-card">
+                <div class="status-indicator status-verde"></div>
+                <div class="doctor-header">
+                    <div class="doctor-photo-1">
+                        <img class="doctor-image-1" src="Doctor/RosarioEspinoza.png" alt="Dra. Torres" class="doctor-photo-1">
+                        <div class="status-badge-animated-Verde status-verde"></div>
+                    </div>
+                    <!--<img src="https://oftalmicaperu.com/wp-content/uploads/2016/04/Staff-Doctor-Espinoza-250x250.jpg" alt="Dra. Rosario Espinoza" class="doctor-photo">-->
+                    <div class="doctor-info">
+                        <h2>Consultorio 10</h2>
+                        <h3>Dra. Rosario Espinoza</h3>
+                        <p>Baja Visión</p>
+                    </div>
+                </div>
+                
+                <div class="hours-info">
+                    <div class="hours-box">
+                        <div class="hours-number">30</div>
+                        <div class="hours-label">PROG</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">4</div>   
+                        <div class="hours-label">BLOQ</div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number">0</div>
+                        <div class="hours-label">VCD</div>
+                    </div>
+                    <div class="hours-box">
+                        <div class="hours-number">6</div>
+                        <div class="hours-label">AGND</div>
+                    </div>  
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #8e44ad;">4</div>
+                        <div class="hours-label" style="color: #8e44ad;">RSVD </div>
+                    </div> 
+                    <div class="hours-box">
+                        <div class="hours-number" style="color: #269b57;" >20</div>
+                        <div class="hours-label" style="color: #269b57;" >DISP </div>
+                    </div>
+                </div>
+                <div class="card" style="padding: 10px;">
+                <!-- Información del paciente -->
+                <div class="patient-section">
+                    <div class="patient-info">
+                        <div class="icon icon-gray">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </div>
+                    <span class="patient-label">Paciente:</span>
+                    <span class="patient-name">María González</span>
+                    </div>
+                </div>
+
+                <div class="horario-info">
+                    <div class="horario-actual">
+                        <span class="hora-inicio">14:00</span>
+                        <div class="status">
+                            <span class="status-label">→ Consulta en curso</span>
+                        </div>
+                        <span class="hora-fin">14:45</span>
+                    </div>                
+                </div>            
+
+                <!-- Métricas de tiempo en 3 columnas -->
+                <div class="time-metrics">
+                    <!-- Inicio Real -->
+                    <div class="metric-card ">
+                        <div class="metric-time blue">14:03</div>
+                        <div class="metric-label">Inicio Real</div>
+                        <div class="metric-extra red">+3 min</div>
+                    </div>
+
+                    <!-- Tiempo Transcurrido -->
+                    <div class="metric-card  ">
+                        <div class="metric-time green" id="elapsedTime">25 min</div>
+                        <div class="metric-label">Transcurrido</div>
+                        <div class="metric-extra gray">de 45 min</div>
+                    </div>
+
+                    <!-- Fin Estimado -->
+                    <div class="metric-card  ">
+                        <div class="metric-time orange" id="estimatedEnd">14:48</div>
+                        <div class="metric-label">Fin Estimado</div>
+                        <div class="metric-extra red">vs 14:45</div>
+                    </div>
+                </div>
+            </div>
+                <div class="card next-patient-card">
+                    <div class="next-header">
+                        <div class="next-title">
+                            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <line x1="19" y1="8" x2="19" y2="14"></line>
+                                <line x1="22" y1="11" x2="16" y2="11"></line>
+                            </svg>
+                            Próximo Paciente
+                        </div>
+                        <div class="next-title">
+                            <svg class="icon-neutro" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                            <div class="delay-indicator">+3 min retraso</div>
+                        </div>
+                    </div>
+
+                    <div class="next-info">
+                        <div>
+                            <div class="scheduled-time">HC-158478</div>
+                            <div class="next-patient-name">Hinder Arimana Pillaca</div>
+                            <div class="scheduled-time">Consulta de control</div>
+                        </div>
+                        <div class="next-time">
+                            <div class="scheduled-time">Programado: 14:45</div>
+                            <div class="estimated-time">Estimado: 14:48</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="next-slots">
+                    <div class="next-slots-title">Próximos cupos efectivos </div>
+                    <div class="time-slots">
+                        <span class="time-slot">14:30</span>
+                        <span class="time-slot">15:00</span>
+                        <span class="time-slot">16:30</span>
+                        <span class="time-slot">17:00</span>
+                    </div>
+                </div>
+
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Ocupación Hoy</span>
+                        <span class="progress-percentage" style="color: #27ae60;">87%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill verde" style="width: 87%;"></div>
+                    </div>
+                </div>
+
+                <div class="trend-indicator trend-up">
+                    ↑ +20% vs semana anterior
+                </div>
+
+                <div class="mini-chart">
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 35%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 100%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 32%; background: #27ae60;"></div>
+                    <div class="mini-bar" style="height: 30%; background: #27ae60;"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Leyenda -->
+        <div class="legend">
+            <h4>📋 Leyenda de Estados de Ocupación</h4>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <div class="legend-color status-rojo"></div>
+                    <span><strong>Rojo:</strong> 0% - 50% (Baja - Prioridad Alta)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color status-amarillo"></div>
+                    <span><strong>Amarillo:</strong> 51% - 70% (Normal - Prioridad Normal)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color status-naranja"></div>
+                    <span><strong>Naranja:</strong> 71% - 85% (Óptima - Prioridad Baja)</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color status-verde"></div>
+                    <span><strong>Verde:</strong> 86% - 100% (Eficaz - Prioridad Baja)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simulación de actualización en tiempo real
+        function updateCards() {
+            const cards = document.querySelectorAll('.doctor-card');
+            
+            cards.forEach(card => {
+                const statusIndicator = card.querySelector('.status-indicator');
+                // Añadir efecto de parpadeo para simular actualizaciones en tiempo real
+                statusIndicator.style.animation = 'none';
+                setTimeout(() => {
+                    statusIndicator.style.animation = 'pulse 2s infinite';
+                }, 100);
+            });
+        }
+
+        // Actualizar cada 5 segundos para simular tiempo real
+        setInterval(updateCards, 5000);
+
+        // Efectos de hover y interactividad
+        document.querySelectorAll('.doctor-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const doctorName = this.querySelector('h3').textContent;
+                const percentage = this.querySelector('.progress-percentage').textContent;
+                
+                // Simular apertura de detalle
+                console.log(`Abriendo detalle de ${doctorName} - Ocupación: ${percentage}`);
+                
+                // Efecto visual de click
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
